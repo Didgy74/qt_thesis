@@ -1,14 +1,36 @@
 #include <QFile>
 #include <QImage>
+#include <QApplication>
+
+//#include "httpHandling/httphandler.h" // Get JSON data from Maptiler
 
 #include "tilerenderrules.h"
 #include "vectortile.h"
 #include "tilerenderer.h"
-
 #include "vector_tile.qpb.h"
+
+
+const QUrl url =QUrl("https://api.maptiler.com/maps/streets/style.json?key=bWo4cKyYIs8K3SkrLiTk"); // Constant url for testing
 
 int main(int argc, char *argv[])
 {
+    /* HTTP Setup
+     *
+     * Commented away to not make unnecessary requests to MapTiler.
+     * It seems to work and return appropriate errors when bad urls are provided
+     *
+    // Start the application (required to make the network request)
+    QApplication a(argc, argv);
+
+    // Set up the httpHandler
+    HTTPHandler httpHandler;
+
+    // Set up request to httpHandler
+    QNetworkRequest request(url);
+
+    // Make http request to get a json stylesheet
+    httpHandler.HTTPGetData(request);
+    */
 
     QJsonDocument doc;
     QJsonParseError parseError;
@@ -42,5 +64,5 @@ int main(int argc, char *argv[])
     renderer.m_zoomLevel = 12;
     renderer.render(&p, tile);
 
-    image.save("/home/matti/z12x2170y1190.png");
+    image.save("C:\\Users\\cecil\\Desktop\\z12x2170y1190.png");
 }
