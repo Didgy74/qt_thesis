@@ -17,7 +17,7 @@ set(PROJECT_SOURCES
 
 qt_add_executable(mbtest
     ${PROJECT_SOURCES}
-    httpHandling/httphandler.h httpHandling/httphandler.cpp
+    httpHandling/networkcontroller.h httpHandling/networkcontroller.cpp
 )
 
 qt_add_resources(mbtest "testData"
