@@ -7,6 +7,13 @@
 #include <QEventLoop>
 #include <QDebug>
 
+/**
+ * Network Controller class.
+ *
+ * @param parent The parent QObject. This object should be the QObject window or widget 
+ * you want to draw to.
+ *
+ */
 NetworkController::NetworkController(QObject *parent)
     : QObject{parent}
 {
@@ -14,11 +21,22 @@ NetworkController::NetworkController(QObject *parent)
     connect(manager, &QNetworkAccessManager::finished, this, &NetworkController::finished);
 }
 
+/**
+ * Network controller destructor.
+ *
+ * Deletes the network access manager when the destructor is called.
+ *
+ */
 NetworkController::~NetworkController()
 {
     delete manager;
 }
 
+/**
+ * @brief NetworkController::sendRequest sends a get request.
+ * @param url The url to make a get request to (as a QString).
+ * @return The response from a the get request (sent as a QString url).
+ */
 QByteArray NetworkController::sendRequest(QString url)
 {
     this->url = url;
@@ -46,6 +64,6 @@ QByteArray NetworkController::sendRequest(QString url)
     // Clean up
     reply->deleteLater();
 
-    // Return response
+    // Return response data
     return responseData;
 }
