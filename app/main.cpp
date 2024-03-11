@@ -50,9 +50,8 @@ int main(int argc, char *argv[])
 
         // Read the cache file contents and convert it to a byteArray().
         QByteArray data = styleSheetFile.readAll();
-        qDebug() << "Finished loading from the cache file. Converting data to string...\n";
         styleSheetFile.close();
-
+        qDebug() << "Finished loading from the cache file. Cache location: " << styleSheetCacheUrl;
         // Potential bugs:
         // What if the cache file got garbled at some step before here? There could potentially be
         // more errors here. Note that the stylesheet is only written to the cached file
@@ -75,7 +74,7 @@ int main(int argc, char *argv[])
         // Write the response data to the cache.
         // Consider additional error handling here in the future.
         if (!styleSheetFile.open(QIODevice::WriteOnly)) {
-            qWarning() << "There was a problem opening the cache file to write to it.";
+            qWarning() << "There was a problem opening the cache file to write to it. Cache location: " << styleSheetCacheUrl;
             return EXIT_FAILURE;
         }
         styleSheetFile.write(styleSheetBytes.response);
