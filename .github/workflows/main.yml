@@ -4,9 +4,10 @@ name: CMake on a single platform
 
 on:
   push:
-    branches: [ $default-branch ]
+    # branches: [ $default-branch ]
+    branches: [ automated-testing ]
   pull_request:
-    branches: [ $default-branch ]
+    # branches: [ $default-branch ]
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
